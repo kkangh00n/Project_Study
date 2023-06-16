@@ -14,7 +14,7 @@ public class InitDB {
     private final InitService initService;
 
     @PostConstruct
-    public void init(){
+    public void init() throws Exception {
         initService.dbInit();
     }
 
@@ -25,13 +25,14 @@ public class InitDB {
 
         private final EntityManager em;
 
-        public void dbInit(){
-            for (int i = 0; i < 20; i++) {
+        public void dbInit() throws Exception {
+            for (int i = 0; i < 200; i++) {
                 Post post = Post.builder()
                         .title("제목"+i)
                         .content("내용"+i)
                         .build();
                 em.persist(post);
+                Thread.sleep(1);
             }
         }
 
