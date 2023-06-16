@@ -1,6 +1,9 @@
 package com.Project.BoardService.controller;
 
 import com.Project.BoardService.domain.Post;
+import com.Project.BoardService.domain.dto.PostResponseDto;
+import com.Project.BoardService.domain.dto.PostSaveRequestDto;
+import com.Project.BoardService.domain.dto.PostUpdateRequestDto;
 import com.Project.BoardService.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,29 +21,29 @@ public class PostController {
     //게시글 작성
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Post save(@RequestBody Post post){
-        return postService.save(post);
+    public PostResponseDto save(@RequestBody PostSaveRequestDto postSaveRequestDto){
+        return postService.save(postSaveRequestDto);
     }
 
     //게시글 전체 조회
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Post> findAll(){
+    public List<PostResponseDto> findAll(){
         return postService.findAll();
     }
 
     //특정 게시글 조회
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Post findById(@PathVariable("id") Long id){
+    public PostResponseDto findById(@PathVariable("id") Long id){
         return postService.findById(id);
     }
 
     //특정 게시글 수정
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Post update(@PathVariable("id") Long id, @RequestBody Post post){
-        return postService.update(id, post);
+    public PostResponseDto update(@PathVariable("id") Long id, @RequestBody PostUpdateRequestDto postUpdateRequestDto){
+        return postService.update(id, postUpdateRequestDto);
     }
 
     //특정 게시글 삭제
