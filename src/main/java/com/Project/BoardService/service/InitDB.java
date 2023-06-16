@@ -27,7 +27,10 @@ public class InitDB {
 
         public void dbInit(){
             for (int i = 0; i < 100; i++) {
-                Post post = new Post("제목" + i, "내용" + i);
+                Post post = Post.builder()
+                        .title("제목"+i)
+                        .content("내용"+i)
+                        .build();
                 em.persist(post);
             }
         }
