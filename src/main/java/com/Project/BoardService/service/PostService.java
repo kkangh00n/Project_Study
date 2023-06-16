@@ -28,7 +28,7 @@ public class PostService {
 
     //게시글 전체 조회
     public List<PostResponseDto> findAll(){
-        List<Post> all = postRepository.findAll();
+        List<Post> all = postRepository.findTop100AllByOrderByCreateDateDesc();
         return all.stream().map(PostResponseDto::of).collect(Collectors.toList());
     }
 
