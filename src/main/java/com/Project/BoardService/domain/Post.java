@@ -1,5 +1,6 @@
 package com.Project.BoardService.domain;
 
+import com.Project.BoardService.domain.dto.PostUpdateRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,9 +55,9 @@ public class Post {
         this.content = content;
     }
 
-    public void update(Post post){
-        this.title = post.getTitle();
-        this.content = post.getContent();
+    public void update(PostUpdateRequestDto postUpdateRequestDto){
+        this.title = postUpdateRequestDto.getTitle();
+        this.content = postUpdateRequestDto.getContent();
     }
 
 }
