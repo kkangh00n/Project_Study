@@ -26,7 +26,7 @@ public class InitDB {
         private final EntityManager em;
 
         public void dbInit(){
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 20; i++) {
                 Post post = Post.builder()
                         .title("제목"+i)
                         .content("내용"+i)
