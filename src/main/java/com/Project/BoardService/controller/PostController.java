@@ -54,4 +54,10 @@ public class PostController {
         return "ok";
     }
 
+    @GetMapping("/search")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PostResponseDto> search(@RequestParam("keyword") String keyword){
+        return postService.search(keyword);
+    }
+
 }

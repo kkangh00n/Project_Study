@@ -53,4 +53,9 @@ public class PostService {
         postRepository.delete(postRepository.findById(id).get());
     }
 
+    //게시글 검색 기능
+    public List<PostResponseDto> search(String keyword){
+        List<Post> searchResult = postRepository.findTop100ByTitleContainingOrderByCreateDateDesc(keyword);
+        return searchResult.stream().map(PostResponseDto::of).collect(Collectors.toList());
+    }
 }

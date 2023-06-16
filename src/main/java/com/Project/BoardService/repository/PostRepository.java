@@ -9,4 +9,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     //게시글 전체 조회 기능
     List<Post> findTop100AllByOrderByCreateDateDesc();
+
+    //게시글 검색 기능
+    List<Post> findTop100ByTitleContainingOrderByCreateDateDesc(String title);
 }
