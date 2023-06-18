@@ -7,6 +7,7 @@ import com.Project.BoardService.domain.dto.PostUpdateRequestDto;
 import com.Project.BoardService.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class PostController {
     //게시글 작성
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PostResponseDto save(@RequestBody PostSaveRequestDto postSaveRequestDto){
+    public PostResponseDto save(@Validated @RequestBody PostSaveRequestDto postSaveRequestDto){
         return postService.save(postSaveRequestDto);
     }
 
@@ -42,7 +43,7 @@ public class PostController {
     //특정 게시글 수정
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PostResponseDto update(@PathVariable("id") Long id, @RequestBody PostUpdateRequestDto postUpdateRequestDto){
+    public PostResponseDto update(@PathVariable("id") Long id, @Validated @RequestBody PostUpdateRequestDto postUpdateRequestDto){
         return postService.update(id, postUpdateRequestDto);
     }
 
