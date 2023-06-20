@@ -4,6 +4,7 @@ import com.Project.BoardService.domain.Post;
 import com.Project.BoardService.domain.dto.PostResponseDto;
 import com.Project.BoardService.domain.dto.PostSaveRequestDto;
 import com.Project.BoardService.domain.dto.PostUpdateRequestDto;
+import com.Project.BoardService.exception.postAdvice.NotFoundPostException;
 import com.Project.BoardService.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,14 +35,16 @@ public class PostService {
 
     //특정 게시글 조회
     public PostResponseDto findById(Long id){
-        Post findPost = postRepository.findById(id).get();
+        Post findPost = postRepository.findById(id)
+                .orElseThrow(NotFoundPostException::new);
         return PostResponseDto.of(findPost);
     }
 
     //특정 게시글 수정
     @Transactional
     public PostResponseDto update(Long id, PostUpdateRequestDto postUpdateRequestDto){
-        Post findPost = postRepository.findById(id).get();
+        Post findPost = postRepository.findById(id)
+                .orElseThrow(NotFoundPostException::new);
 
         findPost.update(postUpdateRequestDto);
         return PostResponseDto.of(findPost);
@@ -50,7 +53,8 @@ public class PostService {
     //특정 게시글 삭제
     @Transactional
     public void delete(Long id){
-        postRepository.delete(postRepository.findById(id).get());
+        postRepository.delete(postRepository.findById(id)
+                .orElseThrow(NotFoundPostException::new));
     }
 
     //게시글 검색 기능
