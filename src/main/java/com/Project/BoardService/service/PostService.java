@@ -4,7 +4,8 @@ import com.Project.BoardService.domain.Post;
 import com.Project.BoardService.domain.dto.PostResponseDto;
 import com.Project.BoardService.domain.dto.PostSaveRequestDto;
 import com.Project.BoardService.domain.dto.PostUpdateRequestDto;
-import com.Project.BoardService.exception.postAdvice.NotFoundPostException;
+import com.Project.BoardService.exception.advice.postAdvice.InvalidKeywordException;
+import com.Project.BoardService.exception.advice.postAdvice.NotFoundPostException;
 import com.Project.BoardService.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -59,7 +60,12 @@ public class PostService {
 
     //게시글 검색 기능
     public List<PostResponseDto> search(String keyword){
-        List<Post> searchResult = postRepository.findTop100ByTitleContainingOrderByCreateDateDesc(keyword);
-        return searchResult.stream().map(PostResponseDto::of).collect(Collectors.toList());
+        if(keyword.trim().isBlank()){
+            throw new InvalidKeywordException();
+        }
+        else {
+            List<Post> searchResult = postRepository.findTop100ByTitleContainingOrderByCreateDateDesc(keyword);
+            return searchResult.stream().map(PostResponseDto::of).collect(Collectors.toList());
+        }
     }
 }
