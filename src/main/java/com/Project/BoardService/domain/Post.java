@@ -1,6 +1,6 @@
 package com.Project.BoardService.domain;
 
-import com.Project.BoardService.domain.common.PostBaseTimeEntity;
+import com.Project.BoardService.domain.common.BaseTimeEntity;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Post extends PostBaseTimeEntity {
+public class Post extends BaseTimeEntity {
 
     @Id
     @GeneratedValue

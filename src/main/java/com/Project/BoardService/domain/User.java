@@ -1,6 +1,6 @@
 package com.Project.BoardService.domain;
 
-import com.Project.BoardService.domain.common.UserBaseTimeEntity;
+import com.Project.BoardService.domain.common.BaseTimeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends UserBaseTimeEntity {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
