@@ -1,8 +1,8 @@
 package com.Project.BoardService.controller;
 
-import com.Project.BoardService.domain.dto.PostResponseDto;
-import com.Project.BoardService.domain.dto.PostSaveRequestDto;
-import com.Project.BoardService.domain.dto.PostUpdateRequestDto;
+import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
+import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
+import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
 import com.Project.BoardService.exception.ErrorResult;
 import com.Project.BoardService.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;

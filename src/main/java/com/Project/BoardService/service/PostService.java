@@ -1,9 +1,9 @@
 package com.Project.BoardService.service;
 
 import com.Project.BoardService.domain.Post;
-import com.Project.BoardService.domain.dto.PostResponseDto;
-import com.Project.BoardService.domain.dto.PostSaveRequestDto;
-import com.Project.BoardService.domain.dto.PostUpdateRequestDto;
+import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
+import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
+import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
 import com.Project.BoardService.exception.advice.postAdvice.InvalidKeywordException;
 import com.Project.BoardService.exception.advice.postAdvice.NotFoundPostException;
 import com.Project.BoardService.repository.PostRepository;

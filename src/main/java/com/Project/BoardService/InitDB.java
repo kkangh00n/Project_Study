@@ -1,4 +1,4 @@
-package com.Project.BoardService.service;
+package com.Project.BoardService;
 
 import com.Project.BoardService.domain.Post;
 import jakarta.annotation.PostConstruct;

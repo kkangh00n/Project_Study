@@ -1,4 +1,4 @@
-package com.Project.BoardService.domain.dto;
+package com.Project.BoardService.domain.dto.postDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

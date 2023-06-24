@@ -1,4 +1,4 @@
-package com.Project.BoardService.domain.dto;
+package com.Project.BoardService.domain.dto.postDto;
 
 import com.Project.BoardService.domain.Post;
 import io.swagger.v3.oas.annotations.media.Schema;
