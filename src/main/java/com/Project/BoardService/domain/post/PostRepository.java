@@ -1,6 +1,6 @@
-package com.Project.BoardService.repository;
+package com.Project.BoardService.domain.post;
 
-import com.Project.BoardService.domain.Post;
+import com.Project.BoardService.domain.post.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

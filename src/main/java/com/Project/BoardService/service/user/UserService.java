@@ -1,11 +1,11 @@
-package com.Project.BoardService.service;
+package com.Project.BoardService.service.user;
 
-import com.Project.BoardService.domain.User;
+import com.Project.BoardService.domain.user.User;
 import com.Project.BoardService.domain.dto.userDto.UserResponseDto;
 import com.Project.BoardService.domain.dto.userDto.UserSaveRequestDto;
 import com.Project.BoardService.exception.advice.userAdvice.DuplicationEmailException;
 import com.Project.BoardService.exception.advice.userAdvice.InvalidPasswordException;
-import com.Project.BoardService.repository.UserRepository;
+import com.Project.BoardService.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

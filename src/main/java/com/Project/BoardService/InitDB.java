@@ -1,6 +1,6 @@
 package com.Project.BoardService;
 
-import com.Project.BoardService.domain.Post;
+import com.Project.BoardService.domain.post.Post;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;

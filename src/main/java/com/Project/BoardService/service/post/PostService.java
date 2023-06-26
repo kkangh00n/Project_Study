@@ -1,12 +1,12 @@
-package com.Project.BoardService.service;
+package com.Project.BoardService.service.post;
 
-import com.Project.BoardService.domain.Post;
+import com.Project.BoardService.domain.post.Post;
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
 import com.Project.BoardService.exception.advice.postAdvice.InvalidKeywordException;
 import com.Project.BoardService.exception.advice.postAdvice.NotFoundPostException;
-import com.Project.BoardService.repository.PostRepository;
+import com.Project.BoardService.domain.post.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

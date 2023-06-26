@@ -1,4 +1,4 @@
-package com.Project.BoardService.domain;
+package com.Project.BoardService.domain.user;
 
 import com.Project.BoardService.domain.common.BaseTimeEntity;
 import jakarta.persistence.Column;

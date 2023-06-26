@@ -1,4 +1,4 @@
-package com.Project.BoardService.domain;
+package com.Project.BoardService.domain.post;
 
 import com.Project.BoardService.domain.common.BaseTimeEntity;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;

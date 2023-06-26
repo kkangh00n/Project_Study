@@ -1,10 +1,10 @@
-package com.Project.BoardService.controller;
+package com.Project.BoardService.controller.post;
 
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
 import com.Project.BoardService.exception.ErrorResult;
-import com.Project.BoardService.service.PostService;
+import com.Project.BoardService.service.post.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;

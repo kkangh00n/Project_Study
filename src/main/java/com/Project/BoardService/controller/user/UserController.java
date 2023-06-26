@@ -1,8 +1,8 @@
-package com.Project.BoardService.controller;
+package com.Project.BoardService.controller.user;
 
 import com.Project.BoardService.domain.dto.userDto.UserResponseDto;
 import com.Project.BoardService.domain.dto.userDto.UserSaveRequestDto;
-import com.Project.BoardService.service.UserService;
+import com.Project.BoardService.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
