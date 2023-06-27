@@ -10,7 +10,7 @@ import lombok.Getter;
 
 @Schema(description = "회원 가입 DTO")
 @Getter
-public class UserSaveRequestDto {
+public class SignInRequestDto {
 
     @Schema(description = "이메일")
     @Email
@@ -23,7 +23,7 @@ public class UserSaveRequestDto {
     private String password;
 
     @Builder
-    public UserSaveRequestDto(String email, String password){
+    public SignInRequestDto(String email, String password){
         this.email = email;
         this.password = password;
     }
