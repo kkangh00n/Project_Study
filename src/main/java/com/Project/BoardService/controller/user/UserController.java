@@ -1,7 +1,9 @@
 package com.Project.BoardService.controller.user;
 
+import com.Project.BoardService.config.security.LogInResponse;
+import com.Project.BoardService.domain.dto.userDto.LogInRequestDto;
 import com.Project.BoardService.domain.dto.userDto.UserResponseDto;
-import com.Project.BoardService.domain.dto.userDto.UserSaveRequestDto;
+import com.Project.BoardService.domain.dto.userDto.SignInRequestDto;
 import com.Project.BoardService.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,9 +25,16 @@ public class UserController {
 
     @Operation(summary = "회원 가입", description = "회원 가입 API")
     @ApiResponse(responseCode = "201", description = "회원 가입 성공", content = @Content(schema = @Schema(implementation = UserResponseDto.class)))
-    @PostMapping
+    @PostMapping("/signIn")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponseDto signIn(@Validated @RequestBody UserSaveRequestDto userSaveRequestDto){
-        return userService.signIn(userSaveRequestDto);
+    public UserResponseDto signIn(@Validated @RequestBody SignInRequestDto signInRequestDto){
+        return userService.signIn(signInRequestDto);
     }
+
+    @Operation(summary = "로그인", description = "로그인 API")
+    @PostMapping("/logIn")
+    public LogInResponse logIn(@Validated @RequestBody LogInRequestDto logInRequestDto){
+        return userService.logIn(logInRequestDto);
+    }
+
 }

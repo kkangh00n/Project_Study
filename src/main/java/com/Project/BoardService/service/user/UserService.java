@@ -1,11 +1,15 @@
 package com.Project.BoardService.service.user;
 
+import com.Project.BoardService.config.security.JwtTokenProvider;
+import com.Project.BoardService.config.security.LogInResponse;
+import com.Project.BoardService.domain.dto.userDto.LogInRequestDto;
 import com.Project.BoardService.domain.user.User;
 import com.Project.BoardService.domain.dto.userDto.UserResponseDto;
-import com.Project.BoardService.domain.dto.userDto.UserSaveRequestDto;
+import com.Project.BoardService.domain.dto.userDto.SignInRequestDto;
 import com.Project.BoardService.exception.advice.userAdvice.DuplicationEmailException;
 import com.Project.BoardService.exception.advice.userAdvice.InvalidPasswordException;
 import com.Project.BoardService.domain.user.UserRepository;
+import com.Project.BoardService.exception.advice.userAdvice.NotFoundUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,24 +21,30 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
     //회원 가입
     @Transactional
-    public UserResponseDto signIn(UserSaveRequestDto userSaveRequestDto){
-
-        String password = userSaveRequestDto.getPassword();
+    public UserResponseDto signIn(SignInRequestDto signInRequestDto){
 
         //중복 이메일 확인
-        if(userRepository.existsUserByEmail(userSaveRequestDto.getEmail())){
+        if(userRepository.existsUserByEmail(signInRequestDto.getEmail())){
             throw new DuplicationEmailException();
         }
 
         //이메일 & 비밀번호 공백 확인
-        if(password.contains(" ")){
+        if(signInRequestDto.getPassword().contains(" ")){
             throw new InvalidPasswordException();
         }
 
-        User saveUser = userRepository.save(userSaveRequestDto.toEntity());
+        User saveUser = userRepository.save(signInRequestDto.toEntity());
         return UserResponseDto.of(saveUser);
+    }
+
+    public LogInResponse logIn(LogInRequestDto logInRequestDto){
+        User LogInUser = userRepository.findByEmailAndPassword(logInRequestDto.getEmail(), logInRequestDto.getPassword())
+                .orElseThrow(NotFoundUserException::new);
+
+        return jwtTokenProvider.createToken(LogInUser.getId());
     }
 }
