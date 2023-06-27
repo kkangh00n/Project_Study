@@ -8,12 +8,9 @@ public class LogInResponse {
 
     private String accessToken;
 
-    private String refreshToken;
-
     @Builder
-    public LogInResponse(String accessToken, String refreshToken){
+    public LogInResponse(String accessToken){
         this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
     }
 
 }
