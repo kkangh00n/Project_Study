@@ -1,5 +1,6 @@
 package com.Project.BoardService.controller.user;
 
+import com.Project.BoardService.domain.dto.userDto.UserInfoResponseDto;
 import com.Project.BoardService.domain.user.User;
 import com.Project.BoardService.jwt.LogIn;
 import com.Project.BoardService.jwt.LogInResponse;
@@ -43,8 +44,8 @@ public class UserController {
     @Operation(summary = "내 정보 조회", description = "내 정보 조회 API")
     @GetMapping("/info")
     @ResponseStatus(HttpStatus.OK)
-    public UserResponseDto findMe(@LogIn User user){
-        return UserResponseDto.of(user);
+    public UserInfoResponseDto findMe(@LogIn User user){
+        return UserInfoResponseDto.of(user);
     }
 
 }
