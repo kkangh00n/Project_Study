@@ -1,4 +1,4 @@
-package com.Project.BoardService.config.security;
+package com.Project.BoardService.jwt;
 
 import lombok.Builder;
 import lombok.Getter;

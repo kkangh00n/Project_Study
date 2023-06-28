@@ -1,7 +1,7 @@
 package com.Project.BoardService.service.user;
 
-import com.Project.BoardService.config.security.JwtTokenProvider;
-import com.Project.BoardService.config.security.LogInResponse;
+import com.Project.BoardService.jwt.JwtTokenProvider;
+import com.Project.BoardService.jwt.LogInResponse;
 import com.Project.BoardService.domain.dto.userDto.LogInRequestDto;
 import com.Project.BoardService.domain.user.User;
 import com.Project.BoardService.domain.dto.userDto.UserResponseDto;

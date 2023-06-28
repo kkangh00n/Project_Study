@@ -1,6 +1,6 @@
 package com.Project.BoardService.controller.user;
 
-import com.Project.BoardService.config.security.LogInResponse;
+import com.Project.BoardService.jwt.LogInResponse;
 import com.Project.BoardService.domain.dto.userDto.LogInRequestDto;
 import com.Project.BoardService.domain.dto.userDto.UserResponseDto;
 import com.Project.BoardService.domain.dto.userDto.SignInRequestDto;

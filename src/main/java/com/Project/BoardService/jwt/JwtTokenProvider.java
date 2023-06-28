@@ -1,4 +1,4 @@
-package com.Project.BoardService.config.security;
+package com.Project.BoardService.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
