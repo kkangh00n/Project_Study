@@ -1,8 +1,6 @@
 package com.Project.BoardService.jwt;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,13 +52,27 @@ public class JwtTokenProvider {
         //요청에서 토큰 GET
         String accessToken = request.getHeader("Token");
 
-        //토큰 payload GET
-        Claims claims = Jwts.parser()
-                .setSigningKey(secretKey)
-                .parseClaimsJws(accessToken)
-                .getBody();
+        try{
+            //토큰 payload GET
+            Claims claims = Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .parseClaimsJws(accessToken)
+                    .getBody();
 
-        return claims.get("userId", Long.class);
+            return claims.get("userId", Long.class);
+        }
+        catch (MalformedJwtException e) {
+            throw new JwtException("유효하지 않은 토큰입니다.");
+        } catch (ExpiredJwtException e) {
+            throw new JwtException("기한이 만료된 토큰입니다.");
+        } catch (UnsupportedJwtException e) {
+            throw new JwtException("지원하지 않는 토큰입니다.");
+        } catch (IllegalArgumentException e) {
+            throw new JwtException("claims 정보가 비어있습니다.");
+        } catch (SignatureException e){
+            throw new JwtException("JWT 서명이 로컬로 산정된 서명과 일치하지 않습니다.");
+        }
+
     }
 
 }
