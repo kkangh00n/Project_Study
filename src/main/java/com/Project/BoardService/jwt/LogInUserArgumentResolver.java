@@ -1,5 +1,6 @@
 package com.Project.BoardService.jwt;
 
+import com.Project.BoardService.domain.dto.userDto.UserResponseDto;
 import com.Project.BoardService.domain.user.User;
 import com.Project.BoardService.domain.user.UserRepository;
 import com.Project.BoardService.exception.advice.userAdvice.NotFoundUserException;
@@ -30,8 +31,8 @@ public class LogInUserArgumentResolver implements HandlerMethodArgumentResolver 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
-        return userRepository.findById(jwtTokenProvider.getMemberId(request))
-                .orElseThrow(NotFoundUserException::new);
+        return UserResponseDto.of(userRepository.findById(jwtTokenProvider.getMemberId(request))
+                .orElseThrow(NotFoundUserException::new));
 
     }
 }
