@@ -27,14 +27,6 @@ public class InitDB {
         private final EntityManager em;
 
         public void dbInit() throws Exception {
-            for (int i = 0; i < 50; i++) {
-                Post post = Post.builder()
-                        .title("제목"+i)
-                        .content("내용"+i)
-                        .build();
-                em.persist(post);
-                Thread.sleep(1);
-            }
 
             User user1 = User.builder()
                     .email("abc1234@google.com")
@@ -47,6 +39,26 @@ public class InitDB {
                     .password("rlarkdgns222")
                     .build();
             em.persist(user2);
+
+            for (int i = 0; i < 25; i++) {
+                Post post = Post.builder()
+                        .title("제목"+i)
+                        .content("내용"+i)
+                        .user(user1)
+                        .build();
+                em.persist(post);
+                Thread.sleep(1);
+            }
+
+            for (int i = 25; i < 50; i++) {
+                Post post = Post.builder()
+                        .title("제목"+i)
+                        .content("내용"+i)
+                        .user(user2)
+                        .build();
+                em.persist(post);
+                Thread.sleep(1);
+            }
 
         }
 
