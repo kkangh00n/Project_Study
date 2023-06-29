@@ -3,7 +3,9 @@ package com.Project.BoardService.controller.post;
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
+import com.Project.BoardService.domain.user.User;
 import com.Project.BoardService.exception.ErrorResult;
+import com.Project.BoardService.jwt.LogIn;
 import com.Project.BoardService.service.post.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,8 +34,8 @@ public class PostController {
     @ApiResponse(responseCode = "201", description = "저장 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class)))
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PostResponseDto save(@Validated @RequestBody PostSaveRequestDto postSaveRequestDto){
-        return postService.save(postSaveRequestDto);
+    public PostResponseDto save(@Validated @RequestBody PostSaveRequestDto postSaveRequestDto, @LogIn User user){
+        return postService.save(postSaveRequestDto, user);
     }
 
     @Operation(summary = "게시물 전체 조회", description = "게시물 전체 조회 API")

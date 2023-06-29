@@ -4,6 +4,7 @@ import com.Project.BoardService.domain.post.Post;
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
+import com.Project.BoardService.domain.user.User;
 import com.Project.BoardService.exception.advice.postAdvice.InvalidKeywordException;
 import com.Project.BoardService.exception.advice.postAdvice.NotFoundPostException;
 import com.Project.BoardService.domain.post.PostRepository;
@@ -23,8 +24,8 @@ public class PostService {
 
     //게시글 작성
     @Transactional
-    public PostResponseDto save(PostSaveRequestDto postSaveRequestDto){
-        Post savePost = postRepository.save(postSaveRequestDto.toEntity());
+    public PostResponseDto save(PostSaveRequestDto postSaveRequestDto, User user){
+        Post savePost = postRepository.save(postSaveRequestDto.toEntity(user));
         return PostResponseDto.of(savePost);
     }
 

@@ -1,6 +1,7 @@
 package com.Project.BoardService.domain.dto.postDto;
 
 import com.Project.BoardService.domain.post.Post;
+import com.Project.BoardService.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -29,10 +30,11 @@ public class PostSaveRequestDto {
     }
 
     // 엔티티 변환
-    public Post toEntity(){
+    public Post toEntity(User user){
         return Post.builder()
                 .title(title)
                 .content(content)
+                .user(user)
                 .build();
     }
 }
