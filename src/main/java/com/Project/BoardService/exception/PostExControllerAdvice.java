@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RestControllerAdvice
 @AllArgsConstructor
-public class ExControllerAdvice {
+public class PostExControllerAdvice {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
