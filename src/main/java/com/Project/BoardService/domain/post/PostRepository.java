@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     //게시글 전체 조회 기능
+    @EntityGraph(attributePaths = {"user"})
     List<Post> findTop100AllByOrderByCreateDateDesc();
 
     @Override
