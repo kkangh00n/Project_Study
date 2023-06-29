@@ -64,8 +64,9 @@ public class PostController {
     })
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PostResponseDto update(@Parameter(name = "id", description = "게시글 ID 값", in = ParameterIn.PATH) @PathVariable("id") Long id, @Validated @RequestBody PostUpdateRequestDto postUpdateRequestDto){
-        return postService.update(id, postUpdateRequestDto);
+    public PostResponseDto update(@Parameter(name = "id", description = "게시글 ID 값", in = ParameterIn.PATH) @PathVariable("id") Long id,
+                                  @Validated @RequestBody PostUpdateRequestDto postUpdateRequestDto, @LogIn User user){
+        return postService.update(id, postUpdateRequestDto, user);
     }
 
     @Operation(summary = "특정 게시물 삭제", description = "특정 게시물 삭제 API")
@@ -75,8 +76,8 @@ public class PostController {
     })
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String delete(@Parameter(name = "id", description = "게시글 ID 값", in = ParameterIn.PATH) @PathVariable("id") Long id){
-        postService.delete(id);
+    public String delete(@Parameter(name = "id", description = "게시글 ID 값", in = ParameterIn.PATH) @PathVariable("id") Long id, @LogIn User user){
+        postService.delete(id, user);
         return "ok";
     }
 

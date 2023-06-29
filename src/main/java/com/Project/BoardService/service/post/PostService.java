@@ -8,6 +8,7 @@ import com.Project.BoardService.domain.user.User;
 import com.Project.BoardService.exception.advice.postAdvice.InvalidKeywordException;
 import com.Project.BoardService.exception.advice.postAdvice.NotFoundPostException;
 import com.Project.BoardService.domain.post.PostRepository;
+import com.Project.BoardService.exception.advice.userAdvice.UnauthorizedUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,9 +45,13 @@ public class PostService {
 
     //특정 게시글 수정
     @Transactional
-    public PostResponseDto update(Long id, PostUpdateRequestDto postUpdateRequestDto){
+    public PostResponseDto update(Long id, PostUpdateRequestDto postUpdateRequestDto, User user){
         Post findPost = postRepository.findById(id)
                 .orElseThrow(NotFoundPostException::new);
+
+        if(findPost.getUser().getId()!=user.getId()){
+            throw new UnauthorizedUserException();
+        }
 
         findPost.update(postUpdateRequestDto);
         return PostResponseDto.of(findPost);
@@ -54,9 +59,16 @@ public class PostService {
 
     //특정 게시글 삭제
     @Transactional
-    public void delete(Long id){
-        postRepository.delete(postRepository.findById(id)
-                .orElseThrow(NotFoundPostException::new));
+    public void delete(Long id, User user){
+
+        Post findPost = postRepository.findById(id)
+                .orElseThrow(NotFoundPostException::new);
+
+        if(findPost.getUser().getId()!=user.getId()){
+            throw new UnauthorizedUserException();
+        }
+
+        postRepository.delete(findPost);
     }
 
     //게시글 검색 기능
