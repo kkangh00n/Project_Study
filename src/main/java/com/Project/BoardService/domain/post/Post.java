@@ -65,6 +65,8 @@ public class Post extends BaseTimeEntity {
         this.title = title;
         this.content = content;
         this.user = user;
+        //양방향 매핑
+        user.getPosts().add(this);
     }
 
     public void update(PostUpdateRequestDto postUpdateRequestDto){
