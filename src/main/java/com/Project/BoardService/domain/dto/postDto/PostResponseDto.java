@@ -1,5 +1,7 @@
 package com.Project.BoardService.domain.dto.postDto;
 
+import com.Project.BoardService.domain.comment.Comment;
+import com.Project.BoardService.domain.dto.commentDto.CommentResponseDto;
 import com.Project.BoardService.domain.post.Post;
 import com.Project.BoardService.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -7,6 +9,8 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Schema(description = "게시글 응답 DTO")
 @Getter
@@ -24,6 +28,9 @@ public class PostResponseDto {
     @Schema(description = "내용")
     private String content;
 
+    @Schema(description = "댓글")
+    private List<CommentResponseDto> commentList;
+
     @Schema(description = "생성일자")
     private LocalDateTime createDate;
 
@@ -31,17 +38,18 @@ public class PostResponseDto {
     private LocalDateTime modifiedDate;
 
     @Builder
-    private PostResponseDto(Long id, String title, String content, LocalDateTime createDate, LocalDateTime modifiedDate, User user){
+    private PostResponseDto(Long id, String title, String content, LocalDateTime createDate, LocalDateTime modifiedDate, User user, List<Comment> comments){
         this.id = id;
         this.title = title;
         this.content = content;
         this.createDate = createDate;
         this.modifiedDate = modifiedDate;
         this.email = user.getEmail();
+        this.commentList = comments.stream().map(CommentResponseDto::of).collect(Collectors.toList());
     }
 
     //Entity -> DTO
-    public static PostResponseDto of (Post post){
+    public static PostResponseDto of(Post post){
         return PostResponseDto.builder()
                 .id(post.getId())
                 .title(post.getTitle())
@@ -49,6 +57,7 @@ public class PostResponseDto {
                 .createDate(post.getCreateDate())
                 .modifiedDate(post.getModifiedDate())
                 .user(post.getUser())
+                .comments(post.getComments())
                 .build();
     }
 }
