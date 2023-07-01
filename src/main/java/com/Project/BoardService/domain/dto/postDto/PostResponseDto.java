@@ -1,6 +1,5 @@
 package com.Project.BoardService.domain.dto.postDto;
 
-import com.Project.BoardService.domain.comment.Comment;
 import com.Project.BoardService.domain.dto.commentDto.CommentResponseDto;
 import com.Project.BoardService.domain.post.Post;
 import com.Project.BoardService.domain.user.User;
@@ -38,14 +37,14 @@ public class PostResponseDto {
     private LocalDateTime modifiedDate;
 
     @Builder
-    private PostResponseDto(Long id, String title, String content, LocalDateTime createDate, LocalDateTime modifiedDate, User user, List<Comment> comments){
+    private PostResponseDto(Long id, String title, String content, LocalDateTime createDate, LocalDateTime modifiedDate, User user, List<CommentResponseDto> comments){
         this.id = id;
         this.title = title;
         this.content = content;
         this.createDate = createDate;
         this.modifiedDate = modifiedDate;
         this.email = user.getEmail();
-        this.commentList = comments.stream().map(CommentResponseDto::of).collect(Collectors.toList());
+        this.commentList = comments;
     }
 
     //Entity -> DTO
@@ -57,7 +56,18 @@ public class PostResponseDto {
                 .createDate(post.getCreateDate())
                 .modifiedDate(post.getModifiedDate())
                 .user(post.getUser())
-                .comments(post.getComments())
+                .build();
+    }
+
+    public static PostResponseDto changeBy(Post post, List<CommentResponseDto> comments){
+        return PostResponseDto.builder()
+                .id(post.getId())
+                .title(post.getTitle())
+                .content(post.getContent())
+                .createDate(post.getCreateDate())
+                .modifiedDate(post.getModifiedDate())
+                .user(post.getUser())
+                .comments(comments)
                 .build();
     }
 }

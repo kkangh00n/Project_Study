@@ -1,5 +1,7 @@
 package com.Project.BoardService.service.post;
 
+import com.Project.BoardService.domain.comment.CommentRepository;
+import com.Project.BoardService.domain.dto.commentDto.CommentResponseDto;
 import com.Project.BoardService.domain.post.Post;
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
@@ -23,6 +25,8 @@ public class PostService {
 
     private final PostRepository postRepository;
 
+    private final CommentRepository commentRepository;
+
     //게시글 작성
     @Transactional
     public PostResponseDto save(PostSaveRequestDto postSaveRequestDto, User user){
@@ -40,7 +44,8 @@ public class PostService {
     public PostResponseDto findById(Long id){
         Post findPost = postRepository.findById(id)
                 .orElseThrow(NotFoundPostException::new);
-        return PostResponseDto.of(findPost);
+        List<CommentResponseDto> commentsByPost = commentRepository.findCommentsByPost(findPost).stream().map(CommentResponseDto::of).collect(Collectors.toList());
+        return PostResponseDto.changeBy(findPost, commentsByPost);
     }
 
     //특정 게시글 수정
