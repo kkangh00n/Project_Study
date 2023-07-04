@@ -12,7 +12,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -34,11 +36,11 @@ public class Post extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "post")
-    private List<PostLike> postLikes = new ArrayList<>();
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private Set<PostLike> postLikes = new HashSet<>();
 
 //    //Builder 패턴 적용
 //    private Post(Builder builder){

@@ -1,7 +1,7 @@
 package com.Project.BoardService.controller.like;
 
 import com.Project.BoardService.domain.dto.likeDto.LikeResponseDto;
-import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
+import com.Project.BoardService.domain.dto.postDto.PostUpdateResponseDto;
 import com.Project.BoardService.domain.entity.user.User;
 import com.Project.BoardService.jwt.LogIn;
 import com.Project.BoardService.service.like.LikeService;
@@ -23,7 +23,7 @@ public class LikeController {
     private final LikeService likeService;
 
     @Operation(summary = "좋아요", description = "좋아요 기능 API")
-    @ApiResponse(responseCode = "200", description = "좋아요 or 취소 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class)))
+    @ApiResponse(responseCode = "200", description = "좋아요 or 취소 성공", content = @Content(schema = @Schema(implementation = LikeResponseDto.class)))
     @PostMapping("/{id}/likes")
     @ResponseStatus(HttpStatus.OK)
     public LikeResponseDto LikeOrUnlike(@PathVariable("id") Long postId, @LogIn User user){

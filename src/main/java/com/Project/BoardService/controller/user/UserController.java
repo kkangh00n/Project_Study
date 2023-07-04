@@ -45,7 +45,7 @@ public class UserController {
     @GetMapping("/info")
     @ResponseStatus(HttpStatus.OK)
     public UserInfoResponseDto findMe(@LogIn User user){
-        return UserInfoResponseDto.of(user);
+        return userService.findMe(user);
     }
 
 }

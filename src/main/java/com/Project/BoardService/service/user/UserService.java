@@ -1,5 +1,8 @@
 package com.Project.BoardService.service.user;
 
+import com.Project.BoardService.domain.dto.userDto.UserInfoResponseDto;
+import com.Project.BoardService.domain.entity.post.Post;
+import com.Project.BoardService.domain.entity.post.PostRepository;
 import com.Project.BoardService.jwt.JwtTokenProvider;
 import com.Project.BoardService.jwt.LogInResponse;
 import com.Project.BoardService.domain.dto.userDto.LogInRequestDto;
@@ -14,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @Transactional(readOnly = true)
@@ -21,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PostRepository postRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
     //회원 가입
@@ -46,5 +52,11 @@ public class UserService {
                 .orElseThrow(NotFoundUserException::new);
 
         return jwtTokenProvider.createToken(LogInUser.getId());
+    }
+
+    @Transactional
+    public UserInfoResponseDto findMe(User user){
+        Integer postsCount = postRepository.countPostsByUser(user);
+        return UserInfoResponseDto.of(user,postsCount);
     }
 }
