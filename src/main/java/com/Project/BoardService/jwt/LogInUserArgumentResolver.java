@@ -1,7 +1,7 @@
 package com.Project.BoardService.jwt;
 
-import com.Project.BoardService.domain.user.User;
-import com.Project.BoardService.domain.user.UserRepository;
+import com.Project.BoardService.domain.entity.user.User;
+import com.Project.BoardService.domain.entity.user.UserRepository;
 import com.Project.BoardService.exception.advice.userAdvice.NotFoundUserException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

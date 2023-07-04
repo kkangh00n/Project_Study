@@ -1,4 +1,4 @@
-package com.Project.BoardService.domain.post;
+package com.Project.BoardService.domain.entity.post;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;

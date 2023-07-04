@@ -1,7 +1,7 @@
 package com.Project.BoardService.controller.user;
 
 import com.Project.BoardService.domain.dto.userDto.UserInfoResponseDto;
-import com.Project.BoardService.domain.user.User;
+import com.Project.BoardService.domain.entity.user.User;
 import com.Project.BoardService.jwt.LogIn;
 import com.Project.BoardService.jwt.LogInResponse;
 import com.Project.BoardService.domain.dto.userDto.LogInRequestDto;

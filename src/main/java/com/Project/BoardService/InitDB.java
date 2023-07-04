@@ -1,8 +1,8 @@
 package com.Project.BoardService;
 
-import com.Project.BoardService.domain.comment.Comment;
-import com.Project.BoardService.domain.post.Post;
-import com.Project.BoardService.domain.user.User;
+import com.Project.BoardService.domain.entity.comment.Comment;
+import com.Project.BoardService.domain.entity.post.Post;
+import com.Project.BoardService.domain.entity.user.User;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;

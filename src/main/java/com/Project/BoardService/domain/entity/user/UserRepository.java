@@ -1,4 +1,4 @@
-package com.Project.BoardService.domain.user;
+package com.Project.BoardService.domain.entity.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

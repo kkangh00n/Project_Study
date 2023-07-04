@@ -1,15 +1,15 @@
 package com.Project.BoardService.service.post;
 
-import com.Project.BoardService.domain.comment.CommentRepository;
+import com.Project.BoardService.domain.entity.comment.CommentRepository;
 import com.Project.BoardService.domain.dto.commentDto.CommentResponseDto;
-import com.Project.BoardService.domain.post.Post;
+import com.Project.BoardService.domain.entity.post.Post;
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
-import com.Project.BoardService.domain.user.User;
+import com.Project.BoardService.domain.entity.user.User;
 import com.Project.BoardService.exception.advice.postAdvice.InvalidKeywordException;
 import com.Project.BoardService.exception.advice.postAdvice.NotFoundPostException;
-import com.Project.BoardService.domain.post.PostRepository;
+import com.Project.BoardService.domain.entity.post.PostRepository;
 import com.Project.BoardService.exception.advice.userAdvice.UnauthorizedUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

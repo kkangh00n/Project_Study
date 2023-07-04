@@ -1,6 +1,6 @@
 package com.Project.BoardService.domain.dto.commentDto;
 
-import com.Project.BoardService.domain.comment.Comment;
+import com.Project.BoardService.domain.entity.comment.Comment;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -3,7 +3,7 @@ package com.Project.BoardService.controller.comment;
 import com.Project.BoardService.domain.dto.commentDto.CommentResponseDto;
 import com.Project.BoardService.domain.dto.commentDto.CommentSaveRequestDto;
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
-import com.Project.BoardService.domain.user.User;
+import com.Project.BoardService.domain.entity.user.User;
 import com.Project.BoardService.jwt.LogIn;
 import com.Project.BoardService.service.comment.CommentService;
 import io.swagger.v3.oas.annotations.Operation;

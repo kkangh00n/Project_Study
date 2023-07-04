@@ -1,8 +1,8 @@
-package com.Project.BoardService.domain.user;
+package com.Project.BoardService.domain.entity.user;
 
-import com.Project.BoardService.domain.comment.Comment;
+import com.Project.BoardService.domain.entity.comment.Comment;
 import com.Project.BoardService.domain.common.BaseTimeEntity;
-import com.Project.BoardService.domain.post.Post;
+import com.Project.BoardService.domain.entity.post.Post;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

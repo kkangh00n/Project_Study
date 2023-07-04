@@ -1,6 +1,6 @@
 package com.Project.BoardService.domain.dto.userDto;
 
-import com.Project.BoardService.domain.user.User;
+import com.Project.BoardService.domain.entity.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;

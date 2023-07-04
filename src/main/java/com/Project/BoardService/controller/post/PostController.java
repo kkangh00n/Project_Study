@@ -3,7 +3,7 @@ package com.Project.BoardService.controller.post;
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
-import com.Project.BoardService.domain.user.User;
+import com.Project.BoardService.domain.entity.user.User;
 import com.Project.BoardService.exception.ErrorResult;
 import com.Project.BoardService.jwt.LogIn;
 import com.Project.BoardService.service.post.PostService;

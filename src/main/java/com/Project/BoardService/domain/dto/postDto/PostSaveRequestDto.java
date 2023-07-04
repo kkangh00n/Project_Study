@@ -1,7 +1,7 @@
 package com.Project.BoardService.domain.dto.postDto;
 
-import com.Project.BoardService.domain.post.Post;
-import com.Project.BoardService.domain.user.User;
+import com.Project.BoardService.domain.entity.post.Post;
+import com.Project.BoardService.domain.entity.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
