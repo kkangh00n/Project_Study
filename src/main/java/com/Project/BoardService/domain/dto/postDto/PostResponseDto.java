@@ -29,6 +29,9 @@ public class PostResponseDto {
     @Schema(description = "댓글")
     private List<CommentResponseDto> commentList;
 
+    @Schema(description = "좋아요")
+    private Long likeCount;
+
     @Schema(description = "생성일자")
     private LocalDateTime createDate;
 
@@ -36,7 +39,7 @@ public class PostResponseDto {
     private LocalDateTime modifiedDate;
 
     @Builder
-    private PostResponseDto(Long id, String title, String content, LocalDateTime createDate, LocalDateTime modifiedDate, User user, List<CommentResponseDto> comments){
+    private PostResponseDto(Long id, String title, String content, LocalDateTime createDate, LocalDateTime modifiedDate, User user, List<CommentResponseDto> comments, Long likeCount){
         this.id = id;
         this.title = title;
         this.content = content;
@@ -44,6 +47,7 @@ public class PostResponseDto {
         this.modifiedDate = modifiedDate;
         this.email = user.getEmail();
         this.commentList = comments;
+        this.likeCount = likeCount;
     }
 
     //Entity -> DTO
@@ -58,7 +62,7 @@ public class PostResponseDto {
                 .build();
     }
 
-    public static PostResponseDto changeBy(Post post, List<CommentResponseDto> comments){
+    public static PostResponseDto fromDtoForFindById(Post post, List<CommentResponseDto> comments, Long LikeCount){
         return PostResponseDto.builder()
                 .id(post.getId())
                 .title(post.getTitle())
@@ -67,6 +71,7 @@ public class PostResponseDto {
                 .modifiedDate(post.getModifiedDate())
                 .user(post.getUser())
                 .comments(comments)
+                .likeCount(LikeCount)
                 .build();
     }
 }

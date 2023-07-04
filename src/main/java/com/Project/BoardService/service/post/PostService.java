@@ -2,6 +2,7 @@ package com.Project.BoardService.service.post;
 
 import com.Project.BoardService.domain.entity.comment.CommentRepository;
 import com.Project.BoardService.domain.dto.commentDto.CommentResponseDto;
+import com.Project.BoardService.domain.entity.like.LikeRepository;
 import com.Project.BoardService.domain.entity.post.Post;
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
@@ -24,8 +25,8 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private final PostRepository postRepository;
-
     private final CommentRepository commentRepository;
+    private final LikeRepository likeRepository;
 
     //게시글 작성
     @Transactional
@@ -45,7 +46,8 @@ public class PostService {
         Post findPost = postRepository.findById(id)
                 .orElseThrow(NotFoundPostException::new);
         List<CommentResponseDto> commentsByPost = commentRepository.findCommentsByPost(findPost).stream().map(CommentResponseDto::of).collect(Collectors.toList());
-        return PostResponseDto.changeBy(findPost, commentsByPost);
+        Long findPostLikeCount = likeRepository.countLikeByPost(findPost).orElse(0L);
+        return PostResponseDto.fromDtoForFindById(findPost, commentsByPost, findPostLikeCount);
     }
 
     //특정 게시글 수정
