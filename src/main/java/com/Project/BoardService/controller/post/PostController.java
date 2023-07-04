@@ -51,7 +51,7 @@ public class PostController {
     })
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PostResponseDto findById(@Parameter(name = "id", description = "게시글 ID 값", in = ParameterIn.PATH) @PathVariable("id") Long id){
+    public FindByIdPostResponseDto findById(@Parameter(name = "id", description = "게시글 ID 값", in = ParameterIn.PATH) @PathVariable("id") Long id){
         return postService.findById(id);
     }
 

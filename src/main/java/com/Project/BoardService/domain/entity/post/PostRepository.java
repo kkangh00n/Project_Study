@@ -13,7 +13,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findTop100AllByOrderByCreateDateDesc();
 
     @Override
-    @EntityGraph(attributePaths = {"user", "comments"})
+    @EntityGraph(attributePaths = {"user"})
     Optional<Post> findById(Long id);
 
     //게시글 검색 기능

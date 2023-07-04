@@ -40,12 +40,14 @@ public class PostService {
     }
 
     //특정 게시글 조회
-    public PostResponseDto findById(Long id){
+    public FindByIdPostResponseDto findById(Long id){
         Post findPost = postRepository.findById(id)
                 .orElseThrow(NotFoundPostException::new);
-        List<CommentResponseDto> commentsByPost = commentRepository.findCommentsByPost(findPost).stream().map(CommentResponseDto::of).collect(Collectors.toList());
-        Long findPostLikeCount = likeRepository.countLikeByPost(findPost).orElse(0L);
-        return PostResponseDto.fromDtoForFindById(findPost, commentsByPost, findPostLikeCount);
+
+        List<CommentResponseDto> comment = commentRepository.findCommentsByPost(findPost).stream().map(CommentResponseDto::of).collect(Collectors.toList());
+        Integer likeCount = likeRepository.countLikeByPost(findPost).orElse(0);
+
+        return FindByIdPostResponseDto.of(findPost, comment, likeCount);
     }
 
     //특정 게시글 수정
