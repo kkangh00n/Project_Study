@@ -3,6 +3,7 @@ package com.Project.BoardService.domain.entity.post;
 import com.Project.BoardService.domain.entity.comment.Comment;
 import com.Project.BoardService.domain.common.BaseTimeEntity;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
+import com.Project.BoardService.domain.entity.like.Like;
 import com.Project.BoardService.domain.entity.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -35,6 +36,9 @@ public class Post extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post")
+    private List<Like> likes = new ArrayList<>();
 
 //    //Builder 패턴 적용
 //    private Post(Builder builder){
