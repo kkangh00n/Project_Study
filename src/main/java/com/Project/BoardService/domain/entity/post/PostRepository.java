@@ -1,5 +1,6 @@
 package com.Project.BoardService.domain.entity.post;
 
+import com.Project.BoardService.domain.entity.user.User;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -20,4 +21,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     //게시글 검색 기능
     @EntityGraph(attributePaths = {"user", "comments", "postLikes"})
     List<Post> findTop100ByTitleContainingOrderByCreateDateDesc(String title);
+
+    Integer countPostsByUser(User user);
 }
