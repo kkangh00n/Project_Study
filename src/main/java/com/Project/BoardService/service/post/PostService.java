@@ -52,7 +52,7 @@ public class PostService {
 
     //특정 게시글 수정
     @Transactional
-    public PostResponseDto update(Long id, PostUpdateRequestDto postUpdateRequestDto, User user){
+    public PostUpdateResponseDto update(Long id, PostUpdateRequestDto postUpdateRequestDto, User user){
         Post findPost = postRepository.findById(id)
                 .orElseThrow(NotFoundPostException::new);
 
@@ -61,7 +61,7 @@ public class PostService {
         }
 
         findPost.update(postUpdateRequestDto);
-        return PostResponseDto.of(findPost);
+        return PostUpdateResponseDto.of(findPost);
     }
 
     //특정 게시글 삭제

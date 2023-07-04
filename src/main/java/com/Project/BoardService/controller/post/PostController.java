@@ -29,7 +29,7 @@ public class PostController {
     private final PostService postService;
 
     @Operation(summary = "게시글 저장", description = "게시물 저장 API")
-    @ApiResponse(responseCode = "201", description = "저장 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class)))
+    @ApiResponse(responseCode = "201", description = "저장 성공", content = @Content(schema = @Schema(implementation = PostSaveResponseDto.class)))
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PostSaveResponseDto save(@Validated @RequestBody PostSaveRequestDto postSaveRequestDto, @LogIn User user){
@@ -37,7 +37,7 @@ public class PostController {
     }
 
     @Operation(summary = "게시물 전체 조회", description = "게시물 전체 조회 API")
-    @ApiResponse(responseCode = "200", description = "전체 조회 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class)))
+    @ApiResponse(responseCode = "200", description = "전체 조회 성공", content = @Content(schema = @Schema(implementation = AllPostResponseDto.class)))
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<AllPostResponseDto> findAll(){
@@ -46,7 +46,7 @@ public class PostController {
 
     @Operation(summary = "특정 게시물 조회", description = "특정 게시물 조회 API")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "특정 게시물 조회 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class))),
+            @ApiResponse(responseCode = "200", description = "특정 게시물 조회 성공", content = @Content(schema = @Schema(implementation = FindByIdPostResponseDto.class))),
             @ApiResponse(responseCode = "404", description = "존재하지 않는 게시물", content = @Content(schema = @Schema(implementation = ErrorResult.class)))
     })
     @GetMapping("/{id}")
@@ -57,19 +57,18 @@ public class PostController {
 
     @Operation(summary = "특정 게시물 수정", description = "특정 게시물 수정 API")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "특정 게시물 수정 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class))),
+            @ApiResponse(responseCode = "200", description = "특정 게시물 수정 성공", content = @Content(schema = @Schema(implementation = PostUpdateResponseDto.class))),
             @ApiResponse(responseCode = "404", description = "존재하지 않는 게시물", content = @Content(schema = @Schema(implementation = ErrorResult.class)))
     })
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PostResponseDto update(@Parameter(name = "id", description = "게시글 ID 값", in = ParameterIn.PATH) @PathVariable("id") Long id,
-                                  @Validated @RequestBody PostUpdateRequestDto postUpdateRequestDto, @LogIn User user){
+    public PostUpdateResponseDto update(@Parameter(name = "id", description = "게시글 ID 값", in = ParameterIn.PATH) @PathVariable("id") Long id,
+                                        @Validated @RequestBody PostUpdateRequestDto postUpdateRequestDto, @LogIn User user){
         return postService.update(id, postUpdateRequestDto, user);
     }
 
     @Operation(summary = "특정 게시물 삭제", description = "특정 게시물 삭제 API")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "특정 게시물 삭제 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class))),
             @ApiResponse(responseCode = "404", description = "존재하지 않는 게시물", content = @Content(schema = @Schema(implementation = ErrorResult.class)))
     })
     @DeleteMapping("/{id}")
@@ -81,7 +80,7 @@ public class PostController {
 
     @Operation(summary = "제목 검색", description = "제목으로 게시물 검색 API")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "검색 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class))),
+            @ApiResponse(responseCode = "200", description = "검색 성공", content = @Content(schema = @Schema(implementation = AllPostResponseDto.class))),
             @ApiResponse(responseCode = "400", description = "키워드 조건 미충족", content = @Content(schema = @Schema(implementation = ErrorResult.class)))
     })
     @GetMapping("/search")
