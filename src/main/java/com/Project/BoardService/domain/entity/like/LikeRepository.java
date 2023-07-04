@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface LikeRepository extends JpaRepository<Like, Long> {
+public interface LikeRepository extends JpaRepository<PostLike, Long> {
 
-    Optional<Like> findByUserAndPost(User user, Post post);
+    Optional<PostLike> findByUserAndPost(User user, Post post);
 
     boolean existsLikeByUserAndPost(User user, Post post);
 
     void deleteLikeByUserAndPost(User user, Post post);
 
-    Long countLikeByPost(Post post);
+    Optional<Long> countLikeByPost(Post post);
 }

@@ -1,6 +1,6 @@
 package com.Project.BoardService.service.like;
 
-import com.Project.BoardService.domain.entity.like.Like;
+import com.Project.BoardService.domain.entity.like.PostLike;
 import com.Project.BoardService.domain.entity.like.LikeRepository;
 import com.Project.BoardService.domain.entity.post.Post;
 import com.Project.BoardService.domain.entity.post.PostRepository;
@@ -27,8 +27,8 @@ public class LikeService {
             return false;
         }
         else{
-            Like like = Like.createLike(user, findPost);
-            likeRepository.save(like);
+            PostLike postLike = PostLike.createLike(user, findPost);
+            likeRepository.save(postLike);
             return true;
         }
     }

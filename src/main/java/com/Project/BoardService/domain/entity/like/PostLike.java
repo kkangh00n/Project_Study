@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Like {
+public class PostLike {
 
     @Id
     @GeneratedValue
@@ -27,16 +27,16 @@ public class Like {
     private Post post;
 
     @Builder
-    public Like(User user, Post post){
+    public PostLike(User user, Post post){
         this.user = user;
         this.post = post;
         //양방향 매핑
-        user.getLikes().add(this);
-        post.getLikes().add(this);
+        user.getPostLikes().add(this);
+        post.getPostLikes().add(this);
     }
 
-    public static Like createLike(User user, Post post){
-        return Like.builder()
+    public static PostLike createLike(User user, Post post){
+        return PostLike.builder()
                 .user(user)
                 .post(post)
                 .build();
