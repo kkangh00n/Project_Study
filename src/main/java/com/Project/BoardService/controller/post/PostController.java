@@ -2,6 +2,7 @@ package com.Project.BoardService.controller.post;
 
 import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
+import com.Project.BoardService.domain.dto.postDto.PostSaveResponseDto;
 import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
 import com.Project.BoardService.domain.entity.user.User;
 import com.Project.BoardService.exception.ErrorResult;
@@ -34,7 +35,7 @@ public class PostController {
     @ApiResponse(responseCode = "201", description = "저장 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class)))
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PostResponseDto save(@Validated @RequestBody PostSaveRequestDto postSaveRequestDto, @LogIn User user){
+    public PostSaveResponseDto save(@Validated @RequestBody PostSaveRequestDto postSaveRequestDto, @LogIn User user){
         return postService.save(postSaveRequestDto, user);
     }
 

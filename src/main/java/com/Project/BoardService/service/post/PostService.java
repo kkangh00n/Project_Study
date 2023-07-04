@@ -1,5 +1,6 @@
 package com.Project.BoardService.service.post;
 
+import com.Project.BoardService.domain.dto.postDto.PostSaveResponseDto;
 import com.Project.BoardService.domain.entity.comment.CommentRepository;
 import com.Project.BoardService.domain.dto.commentDto.CommentResponseDto;
 import com.Project.BoardService.domain.entity.like.LikeRepository;
@@ -30,9 +31,9 @@ public class PostService {
 
     //게시글 작성
     @Transactional
-    public PostResponseDto save(PostSaveRequestDto postSaveRequestDto, User user){
+    public PostSaveResponseDto save(PostSaveRequestDto postSaveRequestDto, User user){
         Post savePost = postRepository.save(postSaveRequestDto.toEntity(user));
-        return PostResponseDto.of(savePost);
+        return PostSaveResponseDto.of(savePost);
     }
 
     //게시글 전체 조회
