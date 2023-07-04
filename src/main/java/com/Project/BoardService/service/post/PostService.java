@@ -1,13 +1,10 @@
 package com.Project.BoardService.service.post;
 
-import com.Project.BoardService.domain.dto.postDto.PostSaveResponseDto;
+import com.Project.BoardService.domain.dto.postDto.*;
 import com.Project.BoardService.domain.entity.comment.CommentRepository;
 import com.Project.BoardService.domain.dto.commentDto.CommentResponseDto;
 import com.Project.BoardService.domain.entity.like.LikeRepository;
 import com.Project.BoardService.domain.entity.post.Post;
-import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
-import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
-import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
 import com.Project.BoardService.domain.entity.user.User;
 import com.Project.BoardService.exception.advice.postAdvice.InvalidKeywordException;
 import com.Project.BoardService.exception.advice.postAdvice.NotFoundPostException;
@@ -37,9 +34,9 @@ public class PostService {
     }
 
     //게시글 전체 조회
-    public List<PostResponseDto> findAll(){
+    public List<AllPostResponseDto> findAll(){
         List<Post> all = postRepository.findTop100AllByOrderByCreateDateDesc();
-        return all.stream().map(PostResponseDto::of).collect(Collectors.toList());
+        return all.stream().map(AllPostResponseDto::of).collect(Collectors.toList());
     }
 
     //특정 게시글 조회

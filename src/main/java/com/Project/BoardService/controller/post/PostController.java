@@ -1,9 +1,6 @@
 package com.Project.BoardService.controller.post;
 
-import com.Project.BoardService.domain.dto.postDto.PostResponseDto;
-import com.Project.BoardService.domain.dto.postDto.PostSaveRequestDto;
-import com.Project.BoardService.domain.dto.postDto.PostSaveResponseDto;
-import com.Project.BoardService.domain.dto.postDto.PostUpdateRequestDto;
+import com.Project.BoardService.domain.dto.postDto.*;
 import com.Project.BoardService.domain.entity.user.User;
 import com.Project.BoardService.exception.ErrorResult;
 import com.Project.BoardService.jwt.LogIn;
@@ -43,7 +40,7 @@ public class PostController {
     @ApiResponse(responseCode = "200", description = "전체 조회 성공", content = @Content(schema = @Schema(implementation = PostResponseDto.class)))
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<PostResponseDto> findAll(){
+    public List<AllPostResponseDto> findAll(){
         return postService.findAll();
     }
 
