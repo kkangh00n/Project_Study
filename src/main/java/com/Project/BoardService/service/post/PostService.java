@@ -79,13 +79,13 @@ public class PostService {
     }
 
     //게시글 검색 기능
-    public List<PostResponseDto> search(String keyword){
+    public List<AllPostResponseDto> search(String keyword){
         if(keyword.trim().isBlank()){
             throw new InvalidKeywordException();
         }
         else {
             List<Post> searchResult = postRepository.findTop100ByTitleContainingOrderByCreateDateDesc(keyword);
-            return searchResult.stream().map(PostResponseDto::of).collect(Collectors.toList());
+            return searchResult.stream().map(AllPostResponseDto::of).collect(Collectors.toList());
         }
     }
 }

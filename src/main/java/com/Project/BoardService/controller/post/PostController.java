@@ -86,7 +86,7 @@ public class PostController {
     })
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    public List<PostResponseDto> search(@Parameter(name="keyword", description = "검색 키워드 문자", in=ParameterIn.QUERY) @RequestParam("keyword") String keyword){
+    public List<AllPostResponseDto> search(@Parameter(name="keyword", description = "검색 키워드 문자", in=ParameterIn.QUERY) @RequestParam("keyword") String keyword){
         return postService.search(keyword);
     }
 
