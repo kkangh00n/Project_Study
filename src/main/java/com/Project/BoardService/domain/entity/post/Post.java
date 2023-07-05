@@ -39,8 +39,12 @@ public class Post extends BaseTimeEntity {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
+    private Integer commentCount;
+
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private Set<PostLike> postLikes = new HashSet<>();
+
+    private Integer likeCount;
 
 //    //Builder 패턴 적용
 //    private Post(Builder builder){
@@ -67,12 +71,15 @@ public class Post extends BaseTimeEntity {
 //    }
 
     @Builder
-    public Post(String title, String content, User user){
+    public Post(String title, String content, User user, Integer commentCount, Integer likeCount){
         this.title = title;
         this.content = content;
         this.user = user;
         //양방향 매핑
         user.getPosts().add(this);
+
+        this.commentCount = commentCount;
+        this.likeCount = likeCount;
     }
 
     public void update(PostUpdateRequestDto postUpdateRequestDto){
