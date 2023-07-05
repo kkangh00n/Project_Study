@@ -19,16 +19,19 @@ public class LikeService {
     private final PostRepository postRepository;
 
     public boolean addOrCancel(Long postId, User user){
+
         Post findPost = postRepository.findById(postId)
                 .orElseThrow(NotFoundPostException::new);
 
         if(likeRepository.existsLikeByUserAndPost(user, findPost)){
             likeRepository.deleteLikeByUserAndPost(user, findPost);
+            findPost.increaseOrDecreaseLike(false);
             return false;
         }
         else{
             PostLike postLike = PostLike.createLike(user, findPost);
             likeRepository.save(postLike);
+            findPost.increaseOrDecreaseLike(true);
             return true;
         }
     }

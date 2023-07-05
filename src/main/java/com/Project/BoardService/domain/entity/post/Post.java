@@ -87,4 +87,17 @@ public class Post extends BaseTimeEntity {
         this.content = postUpdateRequestDto.getContent();
     }
 
+    public void increaseComment(){
+        this.commentCount++;
+    }
+
+    public void increaseOrDecreaseLike(boolean result){
+        if(result){
+            this.likeCount++;
+        }
+        else{
+            this.likeCount--;
+        }
+    }
+
 }

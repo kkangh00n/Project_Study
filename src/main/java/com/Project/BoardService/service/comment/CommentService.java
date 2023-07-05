@@ -27,6 +27,7 @@ public class CommentService {
     @Transactional
     public CommentResponseDto writeComment(User user, Long postId, CommentSaveRequestDto commentSaveRequestDto){
         Post findPost = postRepository.findById(postId).orElseThrow(NotFoundPostException::new);
+        findPost.increaseComment();
         Comment saveComment = commentRepository.save(commentSaveRequestDto.toEntity(user, findPost));
         return CommentResponseDto.of(saveComment);
     }

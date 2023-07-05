@@ -37,8 +37,8 @@ public class AllPostResponseDto {
                 .id(post.getId())
                 .email(post.getUser().getEmail())
                 .title(post.getTitle())
-                .commentCount(post.getComments().size())
-                .likeCount(post.getPostLikes().size())
+                .commentCount(post.getCommentCount())
+                .likeCount(post.getLikeCount())
                 .modifiedDate(post.getModifiedDate())
                 .build();
     }

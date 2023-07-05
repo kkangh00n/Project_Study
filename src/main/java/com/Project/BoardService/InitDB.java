@@ -40,6 +40,8 @@ public class InitDB {
                         .title("제목"+i)
                         .content("내용"+i)
                         .user(user1)
+                        .commentCount(0)
+                        .likeCount(0)
                         .build();
                 em.persist(post);
                 Thread.sleep(1);
@@ -67,6 +69,8 @@ public class InitDB {
                     .title("깍두기")
                     .content("ㅎㅎ")
                     .user(user1)
+                    .commentCount(0)
+                    .likeCount(0)
                     .build();
             em.persist(post2);
 
@@ -76,6 +80,7 @@ public class InitDB {
                     .post(post2)
                     .build();
             em.persist(comment1);
+            post2.increaseComment();
 
             Comment comment2 = Comment.builder()
                     .comment("댓글"+2)
@@ -83,6 +88,7 @@ public class InitDB {
                     .post(post2)
                     .build();
             em.persist(comment2);
+            post2.increaseComment();
 
             Comment comment3 = Comment.builder()
                     .comment("댓글"+3)
@@ -90,6 +96,7 @@ public class InitDB {
                     .post(post2)
                     .build();
             em.persist(comment3);
+            post2.increaseComment();
 
             Comment comment4 = Comment.builder()
                     .comment("댓글"+4)
@@ -97,6 +104,7 @@ public class InitDB {
                     .post(post2)
                     .build();
             em.persist(comment4);
+            post2.increaseComment();
 
         }
 
