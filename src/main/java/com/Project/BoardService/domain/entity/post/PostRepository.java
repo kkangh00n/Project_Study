@@ -19,7 +19,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Optional<Post> findById(Long id);
 
     //게시글 검색 기능
-    @EntityGraph(attributePaths = {"user", "comments", "postLikes"})
+    @EntityGraph(attributePaths = {"user"})
     List<Post> findTop100ByTitleContainingOrderByCreateDateDesc(String title);
 
     Integer countPostsByUser(User user);
