@@ -11,6 +11,8 @@ import com.Project.BoardService.exception.advice.postAdvice.NotFoundPostExceptio
 import com.Project.BoardService.domain.entity.post.PostRepository;
 import com.Project.BoardService.exception.advice.userAdvice.UnauthorizedUserException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,9 +36,10 @@ public class PostService {
     }
 
     //게시글 전체 조회
-    public List<AllPostResponseDto> findAll(){
-        List<Post> all = postRepository.findTop100AllByOrderByCreateDateDesc();
-        return all.stream().map(AllPostResponseDto::of).collect(Collectors.toList());
+    public Page<AllPostResponseDto> findAll(Pageable pageable){
+//        List<Post> all = postRepository.findTop100AllByOrderByCreateDateDesc();
+//        return all.stream().map(AllPostResponseDto::of).collect(Collectors.toList());
+        return postRepository.findAllPosts(pageable).map(AllPostResponseDto::of);
     }
 
     //특정 게시글 조회
