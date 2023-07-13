@@ -46,7 +46,7 @@ public class Post extends BaseTimeEntity {
 
     private Integer likeCount;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "IMAGES", joinColumns = @JoinColumn(name = "IMAGE_ID"))
     private List<UploadFile> images;
 

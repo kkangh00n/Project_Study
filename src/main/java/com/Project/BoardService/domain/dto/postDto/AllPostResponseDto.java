@@ -35,9 +35,6 @@ public class AllPostResponseDto {
     @Schema(description = "수정일자")
     private LocalDateTime modifiedDate;
 
-    @Schema(description = "저장된 이미지 이름")
-    private List<String> imagesName;
-
     public static AllPostResponseDto of(Post post){
         return AllPostResponseDto.builder()
                 .id(post.getId())
@@ -46,7 +43,6 @@ public class AllPostResponseDto {
                 .commentCount(post.getCommentCount())
                 .likeCount(post.getLikeCount())
                 .modifiedDate(post.getModifiedDate())
-                .imagesName(post.getImages().stream().map(UploadFile::getUploadName).collect(Collectors.toList()))
                 .build();
     }
 }
