@@ -45,14 +45,14 @@ public class FindByIdPostResponseDto {
     @Schema(description = "저장된 이미지 이름")
     private List<String> imagesName;
 
-    public static FindByIdPostResponseDto of(Post post, List<CommentResponseDto> comments, Integer likeCount){
+    public static FindByIdPostResponseDto of(Post post, List<CommentResponseDto> comments){
         return FindByIdPostResponseDto.builder()
                 .id(post.getId())
                 .email(post.getUser().getEmail())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .commentList(comments)
-                .likeCount(likeCount)
+                .likeCount(post.getLikeCount())
                 .createDate(post.getCreateDate())
                 .modifiedDate(post.getModifiedDate())
                 .imagesName(post.getImages().stream().map(UploadFile::getUploadName).collect(Collectors.toList()))

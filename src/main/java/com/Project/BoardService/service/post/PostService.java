@@ -52,9 +52,8 @@ public class PostService {
                 .orElseThrow(NotFoundPostException::new);
 
         List<CommentResponseDto> comment = commentRepository.findCommentsByPost(findPost).stream().map(CommentResponseDto::of).collect(Collectors.toList());
-        Integer likeCount = likeRepository.countLikeByPost(findPost).orElse(0);
 
-        return FindByIdPostResponseDto.of(findPost, comment, likeCount);
+        return FindByIdPostResponseDto.of(findPost, comment);
     }
 
     //특정 게시글 수정
