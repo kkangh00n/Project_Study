@@ -36,7 +36,7 @@ public class PostController {
     @ApiResponse(responseCode = "201", description = "저장 성공", content = @Content(schema = @Schema(implementation = PostSaveResponseDto.class)))
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PostSaveResponseDto save(@Validated @RequestBody PostSaveRequestDto postSaveRequestDto, @LogIn User user){
+    public PostSaveResponseDto save(@Validated @ModelAttribute PostSaveRequestDto postSaveRequestDto, @LogIn User user){
         return postService.save(postSaveRequestDto, user);
     }
 
