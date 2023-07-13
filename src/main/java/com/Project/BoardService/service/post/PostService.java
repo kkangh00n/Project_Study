@@ -5,11 +5,13 @@ import com.Project.BoardService.domain.entity.comment.CommentRepository;
 import com.Project.BoardService.domain.dto.commentDto.CommentResponseDto;
 import com.Project.BoardService.domain.entity.like.LikeRepository;
 import com.Project.BoardService.domain.entity.post.Post;
+import com.Project.BoardService.domain.entity.post.UploadFile;
 import com.Project.BoardService.domain.entity.user.User;
 import com.Project.BoardService.exception.advice.postAdvice.InvalidKeywordException;
 import com.Project.BoardService.exception.advice.postAdvice.NotFoundPostException;
 import com.Project.BoardService.domain.entity.post.PostRepository;
 import com.Project.BoardService.exception.advice.userAdvice.UnauthorizedUserException;
+import com.Project.BoardService.service.file.FileStore;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,11 +29,13 @@ public class PostService {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
     private final LikeRepository likeRepository;
+    private final FileStore fileStore;
 
     //게시글 작성
     @Transactional
     public PostSaveResponseDto save(PostSaveRequestDto postSaveRequestDto, User user){
-        Post savePost = postRepository.save(postSaveRequestDto.toEntity(user));
+        List<UploadFile> uploadImages = fileStore.uploadImages(postSaveRequestDto.getImages());
+        Post savePost = postRepository.save(postSaveRequestDto.toEntity(user, uploadImages));
         return PostSaveResponseDto.of(savePost);
     }
 

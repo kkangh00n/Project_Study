@@ -46,6 +46,10 @@ public class Post extends BaseTimeEntity {
 
     private Integer likeCount;
 
+    @ElementCollection
+    @CollectionTable(name = "IMAGES", joinColumns = @JoinColumn(name = "IMAGE_ID"))
+    private List<UploadFile> images;
+
 //    //Builder 패턴 적용
 //    private Post(Builder builder){
 //        this.title = builder.title;
@@ -71,7 +75,7 @@ public class Post extends BaseTimeEntity {
 //    }
 
     @Builder
-    public Post(String title, String content, User user, Integer commentCount, Integer likeCount){
+    public Post(String title, String content, User user, Integer commentCount, Integer likeCount, List<UploadFile> images){
         this.title = title;
         this.content = content;
         this.user = user;
@@ -80,6 +84,7 @@ public class Post extends BaseTimeEntity {
 
         this.commentCount = commentCount;
         this.likeCount = likeCount;
+        this.images = images;
     }
 
     public void update(PostUpdateRequestDto postUpdateRequestDto){
