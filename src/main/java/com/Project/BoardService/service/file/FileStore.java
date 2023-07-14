@@ -27,6 +27,10 @@ public class FileStore {
 
     public UploadFile uploadImage(MultipartFile image){
 
+        if (image.isEmpty()){
+            return null;
+        }
+
         UploadFile uploadImage = UploadFile.of(image);
 
         try{
@@ -40,6 +44,5 @@ public class FileStore {
             return null;
         }
     }
-
 
 }
